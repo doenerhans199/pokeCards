@@ -7,8 +7,8 @@ import { init_db } from './database/init_db';
 import { Resolvers } from './schema/Resolvers';
 
 const main = async() => {
-  //await init_db();
-  //console.log('Database created.');
+  await init_db();
+  console.log('Database created.');
 
   const schema = await buildSchema({
     resolvers: [ Resolvers ],

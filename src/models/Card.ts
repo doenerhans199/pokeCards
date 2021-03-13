@@ -4,16 +4,26 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Column
 } from 'typeorm';
 import { Pokemon } from './Pokemon';
-import { CardType } from './CardType';
+import { CardRarity } from './CardRarity';
 import { Set } from './Set';
+import { CardType } from './CardType';
 @Entity()
 @ObjectType()
 export class Card extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn()
   id: number | null = null;
+
+  @Field(() => String)
+  @Column()
+  name: string = '';
+
+  @Field(() => String)
+  @Column()
+  image: string = '';
 
   @Field(() => Pokemon)
   @ManyToOne(
@@ -31,6 +41,14 @@ export class Card extends BaseEntity {
   )
   set!: Set;
 
+  @Field(() => CardRarity)
+  @ManyToOne(
+    type => CardRarity,
+    cardRarity => cardRarity,
+    { eager: true },
+  )
+  cardRarity!: CardRarity;
+
   @Field(() => CardType)
   @ManyToOne(
     type => CardType,
@@ -39,10 +57,11 @@ export class Card extends BaseEntity {
   )
   cardType!: CardType;
 
-  constructor(Pokemon: Pokemon, Set: Set, CardType: CardType) {
+  constructor(Pokemon: Pokemon, Set: Set, CardRarity: CardRarity, CardType: CardType) {
     super();
     this.pokemon = Pokemon;
-    this.cardType = CardType;
+    this.cardRarity = CardRarity;
     this.set = Set;
+    this.cardType = CardType;
   }
 }
