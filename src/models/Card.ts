@@ -17,6 +17,10 @@ export class Card extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number | null = null;
 
+  @Field(() => Number)
+  @Column()
+  number: number = 0;
+
   @Field(() => String)
   @Column()
   name: string = '';

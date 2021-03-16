@@ -183,17 +183,26 @@ export const init_db = async() => {
 
   // Card
   const pikachuFirst = new Card(pikachu, baseSet, common, pokemon);
+  pikachuFirst.number = 58;
   pikachuFirst.name = 'Pikachu';
   pikachuFirst.image = './images/base_first/common/pikachu.png';
   await pikachuFirst.save();
 
   const charizardHoloFirst = new Card(charizard, baseSet, holo, pokemon);
+  charizardHoloFirst.number = 4;
   charizardHoloFirst.name = 'Charizard';
   charizardHoloFirst.image = './images/base_first/holo/charizard.png';
   await charizardHoloFirst.save();
 
   const darkCharizard = new Card(charizard, rocket, rare, pokemon);
+  darkCharizard.number = 21;
   darkCharizard.name = 'Dark Charizard';
   darkCharizard.image = './images/rocket_first/rare/charizard.png';
+  await darkCharizard.save();
+
+  const darkCharizardHolo = new Card(charizard, rocket, holo, pokemon);
+  darkCharizardHolo.number = 4;
+  darkCharizardHolo.name = 'Dark Charizard';
+  darkCharizardHolo.image = './images/rocket_first/rare/charizard_holo.png';
   await darkCharizard.save();
 };
