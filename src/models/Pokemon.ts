@@ -16,6 +16,10 @@ export class Pokemon extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number | null = null;
 
+  @Field(() => Number)
+  @Column()
+  dex: number = 0;
+
   @Field(() => String)
   @Column()
   name: string = '';
@@ -27,8 +31,9 @@ export class Pokemon extends BaseEntity {
   @JoinTable()
   types: Type[];
 
-  constructor(types: Type[]) {
+  constructor(dex: number, types: Type[]) {
     super();
+    this.dex = dex;
     this.types = types;
   }
 }

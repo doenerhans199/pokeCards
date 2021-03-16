@@ -1,29 +1,29 @@
-import { Query, Resolver, Arg} from 'type-graphql';
+import { Query, Resolver, Arg } from 'type-graphql';
 import { Set, Pokemon, Type, Card, CardRarity } from '../models';
 
 @Resolver()
 export class Resolvers {
-  @Query(() => [ Type ])
+  @Query(() => [Type])
   async getTypes(): Promise<Type[]> {
     return await Type.find();
   }
 
-  @Query(() => [ Set ])
+  @Query(() => [Set])
   async getSets(): Promise<Set[]> {
     return await Set.find();
   }
 
-  @Query(() => [ Pokemon ])
+  @Query(() => [Pokemon])
   async getPokemons(): Promise<Pokemon[]> {
-    return await Pokemon.find({relations: ["types"] });
+    return await Pokemon.find({ relations: ["types"] });
   }
 
-  @Query(() => [ CardRarity ])
+  @Query(() => [CardRarity])
   async getCardRarities(): Promise<CardRarity[]> {
     return await CardRarity.find();
   }
 
-  @Query(() => [ Card ])
+  @Query(() => [Card])
   async getCards(): Promise<Card[]> {
     return await Card.find();
   }
