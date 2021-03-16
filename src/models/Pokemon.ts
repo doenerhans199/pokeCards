@@ -3,7 +3,8 @@ import {
   BaseEntity,
   Column,
   Entity,
-  ManyToOne,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Type } from './Type';
@@ -19,16 +20,15 @@ export class Pokemon extends BaseEntity {
   @Column()
   name: string = '';
 
-  @Field(() => Type)
-  @ManyToOne(
-    type => Type,
-    type => type,
-    { eager: true },
+  @ManyToMany(
+    () => Type,
+    { eager: true }
   )
-  type!: Type;
+  @JoinTable()
+  types: Type[];
 
-  constructor(type: Type) {
+  constructor(types: Type[]) {
     super();
-    this.type = type;
+    this.types = types;
   }
 }

@@ -15,7 +15,7 @@ export class Resolvers {
 
   @Query(() => [ Pokemon ])
   async getPokemons(): Promise<Pokemon[]> {
-    return await Pokemon.find();
+    return await Pokemon.find({relations: ["types"] });
   }
 
   @Query(() => [ CardRarity ])
@@ -28,9 +28,9 @@ export class Resolvers {
     return await Card.find();
   }
 
-  @Query(() => Pokemon)
-  async getPokemonPerName(@Arg('name') name: string): Promise<Pokemon | undefined> {
-    return await Pokemon.findOne({ where: { name } });
+  @Query(() => Card)
+  async getCardByPokemonName(@Arg('pokemon') name: string): Promise<Card | undefined> {
+    return await Card.findOne({ where: { name } });
   }
 
 }

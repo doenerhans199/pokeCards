@@ -6,6 +6,8 @@ import { buildSchema } from 'type-graphql';
 import { init_db } from './database/init_db';
 import { Resolvers } from './schema/Resolvers';
 
+const port = 4000;
+
 const main = async() => {
   await init_db();
   console.log('Database created.');
@@ -18,8 +20,8 @@ const main = async() => {
   const app = express();
   apolloServer.applyMiddleware({ app });
   app.listen(
-    4000,
-    () => console.log(`Server started on http://localhost:4000${apolloServer.graphqlPath}`),
+    port,
+    () => console.log(`Server started on http://localhost:${port}${apolloServer.graphqlPath}`),
   );
 };
 
